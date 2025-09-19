@@ -31,17 +31,20 @@ This repository showcases selected backend components from a production-grade Ru
   RSpec tests for wallet payment processing.
 
 - `app/models/wallet.rb`
+  User wallet model. Manages balance, credit/debit operations, and ensures only drivers can have a wallet. Includes transactional safety and custom validations.
 
 - `app/controllers/api/v1/base_controller.rb`
+  Base controller for API v1. Centralizes authentication, authorization, and shared logic for API controllers.
   
 - `app/controllers/api/v1/payments_controller.rb`  
-  
+  API controller for handling payment creation and processing.
 
 - `app/controllers/api/v1/auths_controller.rb`
   Authentication controller with JWT and refresh token logic.
 
 - `app/controllers/api/concerns/error_handler.rb`
-
+  Module for centralized error handling in API controllers.
+  
 - `config/routes/api.rb`  
   Modular API routes definition.
 

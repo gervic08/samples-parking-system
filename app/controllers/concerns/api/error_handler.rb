@@ -29,7 +29,7 @@ module Api::ErrorHandler
 
   def respond_with_error(code = "unknown_error", context = {}, http_status = nil, custom_headers = {})
     context = {message: context} if context.is_a?(String)
-    context[:code] = code unless context.key?(:code) # siempre tiene que haber un code
+    context[:code] = code unless context.key?(:code)
     custom_headers.each do |header_name, header_value|
       response.set_header(header_name, header_value)
     end

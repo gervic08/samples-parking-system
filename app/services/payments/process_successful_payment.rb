@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Payments
   class ProcessSuccessfulPayment
     prepend ServiceTemplate::Base
@@ -28,7 +30,7 @@ module Payments
 
         payment.completed!
       end
-    rescue ActiveRecord::RecordInvalid, StandardError => e
+    rescue StandardError => e
       payment&.failed!
       Sentry.capture_exception(e, extra: {payment_id: payment.id})
       Rails.logger.error("Failed to process payment: #{e.message}")

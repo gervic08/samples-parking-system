@@ -4,7 +4,8 @@ namespace :api, defaults: {format: :json}, path: nil do
       collection do
         post :refresh
       end
-      
+    end
+
     resources :payments, only: [:create]
   end
 end

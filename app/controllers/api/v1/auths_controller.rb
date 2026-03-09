@@ -1,4 +1,6 @@
- class Api::V1::AuthsController < Api::BaseController
+# frozen_string_literal: true
+
+class Api::V1::AuthsController < Api::BaseController
   ACCESS_TOKEN_EXPIRATION = 2.minutes
   REFRESH_TOKEN_EXPIRATION = 10.minutes
 
@@ -58,7 +60,7 @@
   end
 
   def generate_jwt_token
-    @token ||= JsonWebToken.encode(
+    JsonWebToken.encode(
       user_id: user.id,
       exp: ACCESS_TOKEN_EXPIRATION.from_now.to_i,
       jti: SecureRandom.uuid

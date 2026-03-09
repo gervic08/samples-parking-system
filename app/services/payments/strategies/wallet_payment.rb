@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Payments
   module Strategies
     class WalletPayment
@@ -7,16 +9,8 @@ module Payments
 
       def process!
         wallet = find_wallet!
-        wallet.with_lock do
-          raise InsufficientFunds if wallet.balance < payment.amount
-
-          wallet.decrement!(:balance, payment.amount)
-          wallet.transactions.create!(
-            amount: -payment.amount,
-            type: "debit"
-          )
-          payment.completed!
-        end
+        wallet.debit(payment.amount)
+        payment.completed!
       end
 
       private

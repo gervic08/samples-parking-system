@@ -1,6 +1,6 @@
-class Api::V1::PaymentsController < Api::BaseController
-  before_action :authenticate_api_token!
+# frozen_string_literal: true
 
+class Api::V1::PaymentsController < Api::BaseController
   # POST /api/v1/payments
   def create
     payment = current_user.payments.build(payment_params)
